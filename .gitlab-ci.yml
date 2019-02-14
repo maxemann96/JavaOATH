@@ -1,0 +1,38 @@
+cache:
+  paths:
+    - .m2/repository
+
+variables:
+  MAVEN_OPTS: "-Dhttps.protocols=TLSv1.2 -Dmaven.repo.local=.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
+  MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
+
+stages:
+  - build
+  - test
+  - package
+
+build:
+  image: maven:alpine
+  stage: build
+  script:
+    - mvn --batch-mode -T 1C clean compile
+test:
+  image: maven:alpine
+  stage: test
+  script:
+    - apk add oath-toolkit-liboath --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing
+    - mvn --batch-mode test
+  dependencies:
+    - build
+package:
+  image: maven:alpine
+  stage: package
+  only:
+    - tags
+  script:
+    - mvn --batch-mode -DskipTests package javadoc:jar
+  dependencies:
+    - build
+  artifacts:
+    paths:
+      - target/oath*.jar

@@ -4,7 +4,7 @@
 
     <groupId>de.hiiw.oath</groupId>
     <artifactId>oath</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4-SNAPSHOT</version>
     <name>JavaOATH</name>
     <description>A Java JNI Binding for LibOATH</description>
     <url>https://gitlab.com/maxemann96/JavaOATH</url>
@@ -31,7 +31,7 @@
     <scm>
         <url>https://gitlab.com/maxemann96/JavaOATH</url>
         <developerConnection>scm:git:git@gitlab.com:maxemann96/JavaOATH.git</developerConnection>
-        <tag>oath-1.0.3</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <licenses>

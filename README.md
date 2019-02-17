@@ -6,10 +6,14 @@ A Java Native Wrapper for liboath.
 - liboath (Version >= 2.6.2)
 
 ## Installation
-Currently this package is not in the maven central, 
-I'm working for a fix. Clone the repo and 
-install this package to your local maven repository
-(`mvn clean install`)
+This package is in the maven central, just add the dependency
+```xml
+<dependency>
+    <groupId>de.hiiw.oath</groupId>
+    <artifactId>oath</artifactId>
+    <version>1.0.3</version>
+</dependency>
+```
 
 ## Usage
 Look at the Javadoc Documentation of `OATH.java`
